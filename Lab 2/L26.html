@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <script>
+      arr1 = ["one","two","three","four","five","six","seven","eight","nine"];
+      arr2 = ["ten","eleven","tweleve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"];
+      arr3 = ["","twenty","thirty","fourty","fifty","sixty","seventy","eighty","ninty"];
+      n = parseInt(prompt("enter 3 digit number"));
+      let result="";
+      if(isNaN(n)) {
+         document.write("not a number");
+      }
+      else if(n<0||n>999) {
+         document.write("Invalid Range");
+      }
+      else if(n == 0) {
+         document.write('zero');
+      }
+      else {
+         if(n>=100) {
+            result+=arr1[Math.floor(n/100)-1]+' hundred ';
+            n=n%100;
+         }
+         if(n>=20&&n<100) {
+            result+=arr3[Math.floor(n/10)-1]+' ';
+            n = n%10;
+         }
+         if(n>=10&&n<20) {
+            result+=arr2[n%10]+' ';
+         }
+         if(n!=0 && n<10) {
+            result+=arr1[n-1];
+         }
+      }
+      document.write(result);
+   </script>
+</body>
+</html>

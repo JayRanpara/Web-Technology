@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <script>
+      a = parseInt(prompt("enter first number = "));
+      b = parseInt(prompt("enter second number = "));
+      c = prompt("+,-,*,/ which operation you can perform = ");
+
+      if(c == '+') {
+         document.write("ans is",a+b);
+      }else if(c == '-') {
+         document.write("ans is = "+(a-b));
+      }
+      else if(c == '*') {
+         document.write("ans is = "+(a*b));
+      }
+      else {
+         document.write(`ans is = ${a/b}`);
+      }
+   </script>
+</body>
+</html>
