@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+</head>
+<body>
+   <script>
+      Faculties = [
+         {
+            name:"xyz",
+            salary:10000,
+            age: 15,
+            department:"cse"
+         },
+         {
+            name:"abc",
+            salary:20000,
+            age: 15,
+            department:"me"
+         },
+         {
+            name:"pqr",
+            salary:30000,
+            age: 15,
+            department:"mba"
+         },
+         {
+            name:"rwq",
+            salary:40000,
+            age: 15,
+            department:"llb"
+         },
+         {
+            name:"rew",
+            salary:50000,
+            age: 15,
+            department:"bca"
+         }
+      ];
+      document.write("<div class='m-5'></div>");
+      document.write("<div class='container-md'>");
+      document.write("<table class='table table-striped-columns'>");
+      document.write("<thead>");
+         document.write("<tr>");
+            document.write("<th>Name</th>");
+            document.write("<th>Salary</th>");
+            document.write("<th>age</th>");
+
+            document.write("<th>Department</th>");
+         document.write("</tr>");
+      document.write("</thead>");
+      document.write("<tbody>");
+
+      for(i=0; i<Faculties.length; i++) {
+         document.write("<tr>");
+            
+            document.write("<td>"+Faculties[i].name+"</td>");
+            document.write("<td>"+Faculties[i].salary+"</td>");
+            document.write("<td>"+Faculties[i].age+"</td>");
+            document.write("<td>"+Faculties[i].department+"</td>");
+
+         document.write("</tr>");
+      }
+
+      document.write("</tbody>");
+      document.write("</table>");
+      document.write("</div>");
+   </script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+</body>
+</html>

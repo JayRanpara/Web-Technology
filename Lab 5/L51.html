@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      table{
+         margin: 20% auto ;
+      }
+      .butt{
+         width: 50px;
+      }
+      #expression{
+         width: 220px;
+         background-color: skyblue;
+      }
+   </style>
+</head>
+<body>
+   <table border="5px" cellspacing="0">
+      <tr>
+         <td colspan="4"><input type="text" id = "expression"></td>
+      </tr>
+      <tr>
+         <td><button onclick="forAc()"  class="butt">AC</button></td>
+         <td><button onclick="backSpace()" class="butt"><=</button></td>
+         <td><button onclick="abc('%')" class="butt">%</button></td>
+         <td><button onclick="abc('/')" class="butt">/</button></td>
+      </tr>
+      <tr>
+         <td><button onclick="abc('7')" class="butt">7</button></td>
+         <td><button onclick="abc('8')" class="butt">8</button></td>
+         <td><button onclick="abc('9')" class="butt">9</button></td>
+         <td><button onclick="abc('*')" class="butt">*</button></td>
+      </tr>
+      <tr>
+         <td><button onclick="abc('4')" class="butt">4</button></td>
+         <td><button onclick="abc('5')" class="butt">5</button></td>
+         <td><button onclick="abc('6')" class="butt">6</button></td>
+         <td><button onclick="abc('-')" class="butt">-</button></td>
+      </tr>
+      <tr>
+         <td><button onclick="abc('1')" class="butt">1</button></td>
+         <td><button onclick="abc('2')" class="butt">2</button></td>
+         <td><button onclick="abc('3')" class="butt">3</button></td>
+         <td><button onclick="abc('+')" class="butt">+</button></td>
+      </tr>
+      <tr>
+        <td><button onclick="abc('+')" class="butt">+/-</button></td>
+        <td><button onclick="abc('0')" class="butt">0</button></td>
+        <td><button onclick="abc('.')" class="butt">.</button></td>
+        <td><button onclick="ans()" class="butt">=</button></td>
+      </tr>
+   </table>
+   <script>
+      function abc(val) {
+         document.getElementById("expression").value += val;
+      }
+      function forAc() {
+         document.getElementById("expression").value = ' ';
+      }
+      function backSpace() {
+         temp = document.getElementById("expression").value;
+         temp = temp.slice(0,-1);
+         document.getElementById("expression").value = temp;
+      }
+      function ans() {
+         exp = document.getElementById("expression").value;
+         result = eval(exp);
+         document.getElementById("expression").value=result;
+      }
+   </script>
+</body>
+</html>

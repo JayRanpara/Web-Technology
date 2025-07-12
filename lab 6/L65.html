@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      img{
+         height: 100px;
+         width: 100px;
+      }
+   </style>
+</head>
+<body>
+   <button onclick="changeprop()">+</button>
+   <button onclick="changeprop2()">-</button>
+   <img src="dvd.jpg" alt="" id = "change">
+   
+   <script>
+      height = 100;
+      width  = 100;
+      function changeprop() {
+         height+=50
+         width +=50
+         myref = document.getElementById("change");
+         myref.style.height=height+"px";
+         myref.style.width=width+"px";
+      }
+      function changeprop2() {
+         height-=50;
+         width -=50;
+         myref = document.getElementById("change");
+         myref.style.height=height+"px";
+         myref.style.width=width+"px";
+      }
+   </script>
+</body>
+</html>

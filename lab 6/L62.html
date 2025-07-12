@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <button id="clk">click me</button>
+   <div id = "test"></div>
+   <script>
+      myref = document.getElementById("test");
+      document.getElementById("clk").addEventListener("click",()=>{
+         myref.innerHTML = "click";
+         console.log("click button")
+      })
+      document.getElementById("clk").addEventListener("dblclick",()=>{
+         console.log("double click")
+         myref.innerHTML = "double click";
+      })
+      document.getElementById("clk").addEventListener("mousedown",()=>{
+         console.log("mouse down");
+         myref.innerHTML = "mousedown";
+      })
+      document.getElementById("clk").addEventListener("mouseout",()=>{
+         console.log("mouse out");
+         myref.innerHTML = "mouseout";
+      })
+      document.getElementById("clk").addEventListener("mouseover",()=>{
+         console.log("mouse over");
+         myref.innerHTML = "mouseover";
+      })
+   </script>
+</body>
+</html>
