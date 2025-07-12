@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      background: #FCF6F5;
+      font-size: 25px;
+      color: #2C2C2C;
+      margin: 0;
+      padding: 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    table { 
+      width: 70%;
+      margin: 0 auto;
+      border: 2px solid #990011;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #990011;
+      /* Cherry red */
+      margin-bottom: 30px;
+    }
+
+    button {
+      width: 150px;
+      height: 50px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .presentbtn {
+      background-color: #2C5F2D;
+      margin-left: 25px;
+    }
+
+    .absentbtn {
+      background-color: #B85042;
+      margin-left: 25px;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .displayabs {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: sticky;
+      bottom: 0;
+      background-color: #E7E8D1;
+      border-radius: 20px;
+      padding: 15px;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .btn-container{
+      display: flex;
+      justify-content: center;
+      margin: 20px;
+    }
+    .btnsub{
+      background-color: #990011;
+      margin-right: 100px; 
+    }
+    .btnsub:hover{
+      opacity: .5;
+      
+    }
+    .btnreset{
+      background-color: #990011;
+    }
+    .btnreset:hover{
+      opacity: .5;
+    }
+    .present-row{
+      background-color: #DFF2BF;  
+      color: #4F8A10;
+    }
+    .absent-row{
+      background-color: #FFBABA;  
+      color: #D8000C;
+    }
+  </style>
+
+</head>
+
+<body>
+  <h1 class="bg-color-primary">Student Attendence System</h1>
+  <table id="StudentList" border="0  px" cellspacing="0px" width="100%">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Roll No</th>
+        <th>Status</th>
+        <th>Mark Present</th>
+        <th>Mark Absent</th>
+      </tr>
+    </thead>
+    <tbody id="StudentTableBody"></tbody>
+  </table>
+  <div class="btn-container">
+  <button class="btnsub">Submit</button>
+  <button class="btnreset" id="resetBtn" onclick="resetAttendence()">Reset</button>
+  </div>
+  <div class="displayabs">
+    <div id="absentCount">Absent Students : 0</div>
+    <div id="absentRollNO" >Absent Student Roll No  : none</div>
+  </div>
+
+  <script>
+    students = [
+      { name: "Jiya Kyada", rollNo: 101, status: "pending" },
+      { name: "Shah Dhvani Hitesh", rollNo: 102, status: "pending" },
+      { name: "Saraya Mohit Haresh", rollNo: 103, status: "pending" },
+      { name: "Zalavadiya Heet Siddharth", rollNo: 104, status: "pending" },
+      { name: "Darshil Dobariya", rollNo: 105, status: "pending" },
+      { name: "Nafisa Gandhi", rollNo: 106, status: "pending" },
+      { name: "Vasani Yashvi Niteshbhai", rollNo: 107, status: "pending" },
+      { name: "Delvadiya Manavkumar Kirtibhai", rollNo: 108, status: "pending" },
+      { name: "Ashara Palak Gopalbhai", rollNo: 109, status: "pending" },
+      { name: "Lunagariya Greshi Kamleshbhai", rollNo: 110, status: "pending" },
+      { name: "Nanavati Shrushti Gargesh", rollNo: 111, status: "pending" },
+      { name: "Ranpara Jay Manishbhai", rollNo: 112, status: "pending" },
+      { name: "Disha Mehta", rollNo: 113, status: "pending" },
+      { name: "Thummar Niraj Bhaveshbhai", rollNo: 114, status: "pending" },
+      { name: "Kachhava Nakul Umeshbhai", rollNo: 115, status: "pending" },
+      { name: "Kanabar Urva Darshanbhai", rollNo: 116, status: "pending" },
+      { name: "Nakar Dhruvil Hitesh", rollNo: 117, status: "pending" },
+      { name: "Poshiya Priyanshi Ajaybhai", rollNo: 118, status: "pending" },
+      { name: "Baravalia Dharitri Manharbhai", rollNo: 119, status: "pending" },
+      { name: "Muchhara Kashish Hiteshbhai", rollNo: 120, status: "pending" },
+      { name: "Chauhan Aditya Sureshbhai", rollNo: 121, status: "pending" },
+      { name: "Harsora Sakshi Ajaybhai", rollNo: 122, status: "pending" },
+      { name: "Katrodiya Sahil Rajeshbhai", rollNo: 123, status: "pending" },
+      { name: "Trambadiya Parikshit Parimalbhai", rollNo: 124, status: "pending" },
+      { name: "Padariya Preya Parasbhai", rollNo: 125, status: "pending" },
+      { name: "Gambhava Krushiben Manojbhai", rollNo: 126, status: "pending" },
+      { name: "Jadeja Vishwrajsinh Krushnasinh", rollNo: 127, status: "pending" },
+      { name: "Patel Jiya Sandipbhai", rollNo: 128, status: "pending" },
+      { name: "Pipalava Smit Ashvinbhai", rollNo: 129, status: "pending" },
+      { name: "Gohil Harshrajsinh Jitendrasinh", rollNo: 130, status: "pending" },
+      { name: "Kathiriya Arshi Keshubhai", rollNo: 131, status: "pending" },
+      { name: "Undhad Vishwa Rajesh", rollNo: 132, status: "pending" },
+      { name: "Diya Raiyani", rollNo: 133, status: "pending" },
+      { name: "Chavda Maulik Vinodbhai", rollNo: 134, status: "pending" },
+      { name: "Chavda Priyanka Prabodhbhai", rollNo: 135, status: "pending" },
+      { name: "Chavda Virendrasinh Ashwinbhai", rollNo: 136, status: "pending" },
+      { name: "Galani Krunal Chetanbhai", rollNo: 137, status: "pending" },
+      { name: "Kavar Suchi Vasantbhai", rollNo: 138, status: "pending" },
+      { name: "Odedara Nilesh Parbat", rollNo: 139, status: "pending" },
+      { name: "Vasani Dishita Nikhilkumar", rollNo: 140, status: "pending" },
+      { name: "Vachhani Vaishvi Manojkumar", rollNo: 141, status: "pending" },
+      { name: "Bhadania Ronit Yatinbhai", rollNo: 142, status: "pending" },
+      { name: "Chauhan Jenil Virenbhai", rollNo: 143, status: "pending" },
+      { name: "Virpara Krisha Rajeshbhai", rollNo: 144, status: "pending" },
+      { name: "Chandra Darshit Hiteshbhai", rollNo: 145, status: "pending" },
+      { name: "Detroja Ruchit Arvindbhai", rollNo: 146, status: "pending" },
+      { name: "Kapuriya Hepin Pravinbhai", rollNo: 147, status: "pending" },
+      { name: "Gohel Smit Ashvinbhai", rollNo: 148, status: "pending" },
+      { name: "Patel Kirtan Amitbhai", rollNo: 149, status: "pending" },
+      { name: "Ginoya Deep Kantilal", rollNo: 150, status: "pending" },
+      { name: "Marvaniya Jainish Dharmendrabhai", rollNo: 151, status: "pending" },
+      { name: "Ajudiya Yash Nareshbhai", rollNo: 152, status: "pending" },
+      { name: "Manas Borisagar", rollNo: 153, status: "pending" },
+      { name: "Joshi Soham Kamleshbhai", rollNo: 154, status: "pending" },
+      { name: "Kakadiya Khilan Manishbhai", rollNo: 155, status: "pending" },
+      { name: "Sidhdhapura Dhaval Dharmeshbhai", rollNo: 156, status: "pending" },
+      { name: "Sitapara Aryan Sunilbhai", rollNo: 157, status: "pending" },
+      { name: "Bhatasana Nainshi Pareshbhai", rollNo: 158, status: "pending" },
+      { name: "Malvaniya Viraj Jatinbhai", rollNo: 159, status: "pending" },
+      { name: "Tanisha Pambhar", rollNo: 160, status: "pending" },
+      { name: "Padshala Kuldeep Rajendrakumar", rollNo: 161, status: "pending" },
+      { name: "Bhimani Vishva Manishbhai", rollNo: 162, status: "pending" },
+      { name: "Karan Anushka Pintubhai", rollNo: 163, status: "pending" },
+      { name: "Vyas Kavya Sachin", rollNo: 164, status: "pending" },
+      { name: "Kamani Purna Hareshbhai", rollNo: 165, status: "pending" },
+      { name: "Mori Nandita Renishkumar", rollNo: 166, status: "pending" },
+      { name: "Ratanghayra Pankti Himanshu", rollNo: 167, status: "pending" },
+      { name: "Rupala Nikhil Kashmeeraben", rollNo: 168, status: "pending" },
+      { name: "Jadeja Shivrajsinh Girirajsinh", rollNo: 169, status: "pending" },
+      { name: "Hirva Satani", rollNo: 170, status: "pending" },
+      { name: "Raiyani Jenil Sanjaybhai", rollNo: 171, status: "pending" },
+      { name: "Chandpa Prince Sureshbhai", rollNo: 172, status: "pending" },
+      { name: "Faldu Vrajesh Sanjaybhai", rollNo: 173, status: "pending" },
+      { name: "Khambholiya Manya Parasharbhai", rollNo: 174, status: "pending" },
+      { name: "Prajapati Kaivalya Samir", rollNo: 175, status: "pending" },
+      { name: "Moral Aadit Shaileshbhai", rollNo: 176, status: "pending" },
+      { name: "Shihora Vibhu Chetanbhai", rollNo: 177, status: "pending" },
+      { name: "Kanani Kruti Jayeshbhai", rollNo: 178, status: "pending" },
+      { name: "Karoliya Princekumar Sandipbhai", rollNo: 179, status: "pending" },
+      { name: "Khunt Rutvi Hiteshbhai", rollNo: 180, status: "pending" },
+      { name: "Charadva Abhishek Virenbhai", rollNo: 181, status: "pending" },
+      { name: "Dave Krisha Kalpeshbhai", rollNo: 182, status: "pending" },
+      { name: "Janvi Kalaria", rollNo: 183, status: "pending" },
+      { name: "Rajwani Rohan Malik", rollNo: 184, status: "pending" },
+      { name: "Rana Parthrajsinh Bhupatsinh", rollNo: 185, status: "pending" },
+      { name: "Solanki Ronak Arvindbhai", rollNo: 186, status: "pending" },
+      { name: "Panchal Vedantkumar Niravbhai", rollNo: 187, status: "pending" },
+      { name: "Ambasana Venisha Hitenbhai", rollNo: 188, status: "pending" },
+      { name: "Raichura Smeet Rohitkumar", rollNo: 189, status: "pending" },
+      { name: "Gambhava Mirali Sureshbhai", rollNo: 190, status: "pending" },
+      { name: "Dave Dhruv Viralkumar", rollNo: 191, status: "pending" },
+      { name: "Ghetiya Ritu Pankajbhai", rollNo: 192, status: "pending" },
+      { name: "Radhanpara Saumya Jatinbhai", rollNo: 193, status: "pending" },
+      { name: "Yadav Gaurav Kaushikbhai", rollNo: 194, status: "pending" },
+      { name: "Buddhadev Misri Sanjaybhai", rollNo: 195, status: "pending" },
+      { name: "Joshi Kairav Paren", rollNo: 196, status: "pending" },
+      { name: "Savaliya Dhruvi Bharatbhai", rollNo: 197, status: "pending" },
+      { name: "Radhanpura Jeel Nimish", rollNo: 198, status: "pending" },
+      { name: "Savaliya Priyanshi Sureshbhai", rollNo: 199, status: "pending" },
+      { name: "Zala Bhavyadeepsinh Pruthvirajsinh", rollNo: 200, status: "pending" }
+    ];
+    function statusInfo(i, stat) {
+      students[i].status = stat;
+      displayList();
+    }
+    function displayList() {
+
+      listul = document.getElementById("StudentTableBody");
+      listul.innerHTML = "";
+      absentrollno = [];
+      absentcount = 0;
+
+      students.forEach((student, i) => {
+        if (student.status == "Absent") {
+          absentcount++;
+          absentrollno.push(student.rollNo);
+        }
+
+        const row = document.createElement("tr");
+
+        rowclass=" ";
+        if(student.status=="Present") {
+          rowclass="present-row";
+        }
+        else if(student.status=="Absent") {
+          rowclass="absent-row";
+        }
+        else{
+          rowclass = "pending-row";
+        }
+        row.className = rowclass;
+
+        row.innerHTML = `
+         <td>${student.name}</td>
+         <td>${student.rollNo}</td>
+         <td>${student.status}</td>
+         <td><button class="presentbtn" onclick="statusInfo(${i}, 'Present')">Present</button></td>
+         <td><button class="absentbtn" onclick="statusInfo(${i}, 'Absent')">Absent</button></td>
+      `;
+        listul.appendChild(row);
+
+      });
+      document.getElementById("absentCount").textContent = `Absent Students : ${absentcount}`;
+      document.getElementById("absentRollNO").innerHTML = `Absent Student Roll No : ${absentrollno}`;
+    }
+  function resetAttendence() {
+  students.forEach(student => 
+    student.status = "pending"
+  );
+   displayList();
+  
+}
+    displayList();
+  </script>
+</body>
+</html>
